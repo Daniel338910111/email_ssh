@@ -6,14 +6,14 @@ please don't use this without the pc user permissions
 fill the required field in the bottom of the script under __name__=='__main__'
 
 
-build in commands:
+__build in commands:__
 
     q = quit (exiting the program)
     shutdown = shutdown the computer
     screenshot = takes a screen shot and sending it to your email
 
 
-how to activate:
+__how to activate:__
     send to yourself email with one of thoes commands
     the program will check every 20s and if it got a command 
     it will replay
@@ -21,10 +21,10 @@ how to activate:
     it wont replay only when you call shutdown function and q 
 
 
-easy to add commands
+__easy to add commands
 just add a function to the class
-and then add the function to the dict in the run() but don't call it
+and then add the function to the dict in the run() but don't call it__
 
-easy to read
+__easy to read__
 
-short and understandable script with alot of power!
+__short and understandable script with alot of power!__
