@@ -23,7 +23,7 @@ __how to activate:__
 
 __easy to add commands
 just add a function to the class
-and then add the function to the dict in the run() but don't call it__
+and then add the function to the dict in the send_by_command() but don't call it__
 
 __easy to read__
 
