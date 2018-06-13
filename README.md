@@ -10,7 +10,7 @@ build in commands:
 
     q = quit (exiting the program)
     shutdown = shutdown the computer
-    screenshot = takes a screen shot and sending it to your emai
+    screenshot = takes a screen shot and sending it to your email
 
 
 how to activate:
