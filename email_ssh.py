@@ -34,11 +34,27 @@ class email_ssh: # a very original name
         sending it and then deleting it from your pc
         to save space
         """
-        screenshot = pyautogui.screenshot()
-        screenshot.save('screenshots/screenshot.png')
-        image = open('screenshots/screenshot.png', 'rb').read()
-        self.image = MIMEImage(image, name='Took now')
-        return self._message.attach(self.image)
+        try:
+            screenshot = pyautogui.screenshot()
+            screenshot.save('screenshots/screenshot.png')
+            image = open('screenshots/screenshot.png', 'rb').read()
+            self.image = MIMEImage(image, name='Took now')
+            return self._message.attach(self.image)
+        except:
+            os.makedirs('screenshots')
+            self.screenshot()
+            # you can do that without creating the dir
+            
+            # remove the try: and the except and all under the except like os.makedirs and so on..
+            
+            # and update screenshot.save('screenshots/screenshot.png') in line 39
+            # to screenshot.save('screenshot.png')
+            
+            # and image = open('screenshots/screenshot.png', 'rb') in line 40
+            # to image = open('screenshot.png', 'rb')
+            
+            # and ofc in line 105 os.remove('screenshots/screenshot.png')
+            # to os.remove('screenshot.png')
 
     def shutdown_program(self):
         """closing the program via command q"""
@@ -73,7 +89,7 @@ class email_ssh: # a very original name
         
         
         commands_functions={'screenshot': self.screenshot,
-                            'shutdown': self.shutdown_pc(),
+                            'shutdown': self.shutdown_pc,
                             'q': self.shutdown_program,
                             }
 
