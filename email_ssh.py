@@ -113,6 +113,7 @@ class email_ssh: # a very original name
         reciver = easyimap.connect('imap.gmail.com', self._email, self._password)
         checked_emails = [] # to not make the last given command
         # all the checked commands going to here
+        # *not in use for now*
         
         while True:
             for gmail in reciver.listids(limit=1): # checking the last email
