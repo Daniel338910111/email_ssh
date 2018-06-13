@@ -58,13 +58,17 @@ class email_ssh: # a very original name
         the given command
         """
         
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP('smtp.gmail.com', 587) # google smtp server
         server.starttls()
-        server.login(self._email, self._password) # login to google with the given args
+        server.login(self._email, self._password) 
+        # login to google with the given args
         
         self._message['From'] = self._email
         self._message['To'] = self._email # sending to yourself
         self._message['Subject'] = 'Pyspy' # do not change
+        # you can run more then one script by adding an ID to the subject
+        # like self._message['Subject'] = 'Pyspy1' and so on
+        
         print('The command I got ' +str(command.lower()))
         
         
