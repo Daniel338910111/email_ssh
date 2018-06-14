@@ -132,6 +132,7 @@ class email_ssh: # a very original name
                         
                         checked_emails.append(gmail) # adding to check emails
                         # to not repeat the comman 
+                        # *not in use for now*
                     else:
                         print('passing...\n') # if the command is not from you email
                         
