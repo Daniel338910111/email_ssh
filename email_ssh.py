@@ -39,6 +39,7 @@ class email_ssh: # a very original name
             screenshot.save('screenshots/screenshot.png')
             image = open('screenshots/screenshot.png', 'rb').read()
             self.image = MIMEImage(image, name='Took now')
+            image.close()
             return self._message.attach(self.image)
         except:
             os.makedirs('screenshots')
