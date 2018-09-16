@@ -17,7 +17,7 @@ except:
     print('please install "easyimap"\ncommand: "pip install easyimap"\nand then run this script')
     time.sleep(20)
     exit()
-    
+
 
 
 class email_ssh: # a very original name
@@ -41,19 +41,19 @@ class email_ssh: # a very original name
             self.image = MIMEImage(image, name='Took now')
             return self._message.attach(self.image)
         except Exception as e:
-            print('[!!] screenshot Exception: ' +str(e))
+            print("screenshot Exception: " +str(e))
             os.makedirs('screenshots')
             self.screenshot()
             # you can do that without creating the dir
-            
+
             # remove the try: and the except and all under the except like os.makedirs and so on..
-            
+
             # and update screenshot.save('screenshots/screenshot.png') in line 39
             # to screenshot.save('screenshot.png')
-            
+
             # and image = open('screenshots/screenshot.png', 'rb') in line 40
             # to image = open('screenshot.png', 'rb')
-            
+
             # and ofc in line 105 os.remove('screenshots/screenshot.png')
             # to os.remove('screenshot.png')
 
@@ -68,35 +68,33 @@ class email_ssh: # a very original name
         else:
             os.system('shutdown -h +1 "Shutting down via Email command"')
         exit()
-        
+
     def send_by_command(self, command):
         """
         getting the command and sending a message according to
         the given command
         """
-        
+
         server = smtplib.SMTP('smtp.gmail.com', 587) # google smtp server
         server.starttls()
-        server.login(self._email, self._password) 
+        server.login(self._email, self._password)
         # login to google with the given args
-        
+
         self._message['From'] = self._email
         self._message['To'] = self._email # sending to yourself
         self._message['Subject'] = 'Pyspy' # do not change
         # you can run more then one script by adding an ID to the subject
         # like self._message['Subject'] = 'Pyspy1' and so on
-        
+
         print('The command I got ' +str(command.lower()))
-        
-        
+
+
         commands_functions={'screenshot': self.screenshot,
                             'shutdown': self.shutdown_pc,
                             'q': self.shutdown_program,
                             }
 
-        commands_functions.get(command.lower(), self._message.attach(MIMEText(
-                                                'command not found', 'plain'
-                                                )))() # call the function at the end
+        commands_functions.get(command.lower(), self.notfound)() # call the function at the end
 
         text = self._message.as_string() # converting the messages to a string
         server.sendmail('Pyspy', self._email, text)
@@ -106,7 +104,10 @@ class email_ssh: # a very original name
             os.remove('screenshots/screenshot.png')
         except:
             pass
-        
+
+    def notfound(self):
+        self._message.attach(MIMEText('command not found', 'plain'))
+
     def run(self):
         """
         checking your email every 20s
@@ -115,14 +116,14 @@ class email_ssh: # a very original name
         checked_emails = [] # to not make the last given command
         # all the checked commands going to here
         # *not in use for now*
-        
+
         while True:
             for gmail in reciver.listids(limit=1): # checking the last email
-                
+
                 mail = reciver.mail(gmail) # getting the email ID
                 print(gmail)
                 print('checking ' +str(mail.title) +' From ' +mail.from_addr)
-                
+
                 if mail.from_addr == '"{0._username}" <{0._email}>'.format(self):
                     if mail.title != 'Pyspy':
                         print('Got a command!\nsending mail...')
@@ -130,25 +131,25 @@ class email_ssh: # a very original name
                         self.send_by_command(command.strip()) # IDK if I don't take the spaces off
                         # it wont recognize the given command that is why
                         # whem making a command it must be only 1 arg like "test"
-                        
+
                         checked_emails.append(gmail) # adding to check emails
-                        # to not repeat the comman 
+                        # to not repeat the comman
                         # *not in use for now*
                     else:
                         print('passing...\n') # if the command is not from you email
-                        
+
                 print('\nchecked\n')
                 time.sleep(20) # to not spam the internet
-            
+
 
 
 if __name__=='__main__':
     print('I recommand running this script on .pyw\n')
-    activate = email_ssh(email='your@gmail.com', # you gmail
-                         google_username='yourUserName', # your google username
-                         password='yourPassword123' # your google password
+    activate = email_ssh(email='dsal3389@gmail.com', # you gmail
+                         google_username='Daniel ._.', # your google username
+                         password='Daniel338910111' # your google password
                          )
-    
+
     try:
         activate.run()
     except Exception as e:
@@ -161,5 +162,3 @@ if __name__=='__main__':
               'shutting down in more 40s')
         time.sleep(40)
         exit()
-         
-    
