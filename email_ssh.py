@@ -145,9 +145,9 @@ class email_ssh: # a very original name
 
 if __name__=='__main__':
     print('I recommand running this script on .pyw\n')
-    activate = email_ssh(email='dsal3389@gmail.com', # you gmail
-                         google_username='Daniel ._.', # your google username
-                         password='Daniel338910111' # your google password
+    activate = email_ssh(email='x@gmail.com', # you gmail
+                         google_username='x', # your google username
+                         password='x123' # your google password
                          )
 
     try:
